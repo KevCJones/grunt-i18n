@@ -58,12 +58,16 @@ module.exports = function(grunt) {
   };
   generateOutputPath = function(templatePath, localePath, options) {
     var filePath, localeFolder, trimmedFilePath;
-    localeFolder = path.basename(localePath, path.extname(localePath));
+    if(options.flattenPath)
+      localeFolder = path.basename(localePath, path.extname(localePath));
     if (grunt.util._.startsWith(templatePath, options.base)) {
       filePath = templatePath.slice(options.base.length);
     }
     trimmedFilePath = grunt.util._.trim(filePath, '/');
-    return [options.output, localeFolder, trimmedFilePath].join('/');
+    if(!options.flattenLocaleFolder)
+      return [options.output, localeFolder, trimmedFilePath].join('/');
+    else
+      return [options.output, trimmedFilePath].join('/');
   };
   return this;
 };
