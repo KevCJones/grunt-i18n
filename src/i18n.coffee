@@ -22,7 +22,7 @@ parsers =
   transifex: transifexParser
 
 module.exports = (grunt) ->
-  grunt.registerMultiTask 'i18n', 'Localize Grunt templates', ->
+  grunt.registerMultiTask 'i18n', 'Localize Grunty templates', ->
     options = @options
       locales: []
       output: '.'
@@ -56,7 +56,7 @@ module.exports = (grunt) ->
     catch e then handleError e
 
   handleError = (e) ->
-    grunt.verbose.write e;
+    grunt.verbose.write e
 
   generateOutputPath = (templatePath, localePath, options) ->
     localeFolder = path.basename localePath, path.extname localePath
