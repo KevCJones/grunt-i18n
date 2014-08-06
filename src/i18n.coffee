@@ -52,7 +52,11 @@ module.exports = (grunt) ->
     templateOptions =
       data: locale
     templateOptions.delimiters = options.delimiters if options.delimiters
-    grunt.template.process template, templateOptions
+    try grunt.template.process template, templateOptions
+    catch e then handleError e
+
+  handleError = (e) ->
+    grunt.verbose.write e;
 
   generateOutputPath = (templatePath, localePath, options) ->
     localeFolder = path.basename localePath, path.extname localePath
