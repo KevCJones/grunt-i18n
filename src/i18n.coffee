@@ -60,9 +60,11 @@ module.exports = (grunt) ->
     grunt.verbose.write e
 
   generateOutputPath = (templatePath, localePath, options) ->
-    localeFolder = path.basename localePath, path.extname localePath
+    localeFolder = path.basename localePath, path.extname localePath if options.flattenPath
     filePath = templatePath.slice options.base.length if grunt.util._.startsWith templatePath, options.base
     trimmedFilePath = grunt.util._.trim filePath, '/'
-    [options.output, localeFolder, trimmedFilePath].join '/'
+    if !options.flattenLocaleFolder
+      [options.output, localeFolder, trimmedFilePath].join '/'
+    else [options.output, trimmedFilePath].join '/'
 
   return @
