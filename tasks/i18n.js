@@ -77,11 +77,12 @@ module.exports = function(grunt) {
       templateOptions.delimiters = options.delimiters;
     }
     try {
-      return grunt.template.process(template, templateOptions);
+      grunt.template.process(template, templateOptions);
     } catch (_error) {
       e = _error;
-      return handleError(e);
+      handleError(e);
     }
+    return grunt.verbose.writeln("Completed!");
   };
   handleError = function(e) {
     return grunt.verbose.write(e);

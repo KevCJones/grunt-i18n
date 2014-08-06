@@ -54,6 +54,7 @@ module.exports = (grunt) ->
     templateOptions.delimiters = options.delimiters if options.delimiters
     try grunt.template.process template, templateOptions
     catch e then handleError e
+    grunt.verbose.writeln "Completed!"
 
   handleError = (e) ->
     grunt.verbose.write e
